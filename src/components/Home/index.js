@@ -5,8 +5,6 @@ import TeamCard from '../TeamCard'
 
 import './index.css'
 
-const teamsApiUrl = 'https://apis.ccbp.in/ipl'
-
 class Home extends Component {
   state = {
     isLoading: true,
@@ -18,8 +16,10 @@ class Home extends Component {
   }
 
   getTeams = async () => {
-    const response = await fetch(teamsApiUrl)
+    const response = await fetch('https://apis.ccbp.in/ipl')
     const fetchedData = await response.json()
+    console.log(fetchedData)
+
     const formattedData = fetchedData.teams.map(team => ({
       name: team.name,
       id: team.id,
@@ -34,7 +34,7 @@ class Home extends Component {
 
   renderTeamsList = () => {
     const {teamsData} = this.state
-
+    console.log(teamsData)
     return (
       <ul className="teams-list">
         {teamsData.map(each => (
